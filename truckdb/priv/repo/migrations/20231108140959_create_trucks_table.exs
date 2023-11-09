@@ -4,9 +4,7 @@ defmodule Truckdb.Repo.Migrations.CreateTrucksTable do
 
   def change do
     create_type(:facility_type, [:truck, :push_cart])
-    # Further migrations could add to this type as well via:
-    # EctoEnumMigration.add_value_to_type(:edit_type, :scroll)
-    create_type(:permit_status, [:approved, :expired, :requested, :suspended])
+    create_type(:permit_status, [:approved, :expired, :requested, :suspended, :issued])
 
     create table(:trucks, primary_key: false) do
       add(:id, :binary_id, primary_key: true)
@@ -20,7 +18,7 @@ defmodule Truckdb.Repo.Migrations.CreateTrucksTable do
       add(:block, :string)
       add(:lot, :string)
       add(:permit, :string, null: false)
-      add(:status, :string, null: false)
+      add(:status, :permit_status, null: false)
       add(:food_items, :string)
       add(:x, :string)
       add(:y, :string)
