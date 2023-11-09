@@ -10,6 +10,10 @@ defmodule TruckdbWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :graphql do
+    # TODO
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -20,10 +24,21 @@ defmodule TruckdbWeb.Router do
     get "/", PageController, :home
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", TruckdbWeb do
-  #   pipe_through :api
-  # end
+  scope "/api" do
+    pipe_through(:graphql)
+
+    forward("/", Absinthe.Plug, schema: TruckdbWeb.Schema)
+  end
+
+  scope "/graphql/graphiql" do
+    pipe_through(:graphql)
+
+    forward(
+      "/",
+      Absinthe.Plug.GraphiQL,
+      schema: TruckdbWeb.Schema
+    )
+  end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:truckdb, :dev_routes) do
@@ -38,7 +53,7 @@ defmodule TruckdbWeb.Router do
       pipe_through :browser
 
       live_dashboard "/dashboard", metrics: TruckdbWeb.Telemetry
-      forward "/mailbox", Plug.Swoosh.MailboxPreview
+      forward("/mailbox", Plug.Swoosh.MailboxPreview)
     end
   end
 end
