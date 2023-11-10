@@ -41,9 +41,38 @@ defmodule Truckdb.Trucks do
     Repo.fetch(Truck, id)
   end
 
+  @doc """
+  Fetch a single truck by its location_id
+
+  ## Examples
+
+      iex> fetch_truck_by_location_id(location_id)
+      {:ok, %Truck{}}
+
+      iex> fetch_truck_by_location_id(invalid_location_id)
+      {:error, :not_found}
+
+  """
+
+  def fetch_truck_by_location_id(location_id) do
+    Repo.fetch_by(Truck, location_id: location_id)
+  end
 
   @doc """
-  Updates a new truck
+  Gets all trucks
+
+  ## Examples
+
+      iex> get_trucks()
+      [%Truck{}, %Truck{}]
+
+  """
+  def get_trucks() do
+    Repo.all(Truck)
+  end
+
+  @doc """
+  Updates a truck
 
   ## Examples
 
@@ -67,6 +96,45 @@ defmodule Truckdb.Trucks do
         {:error, :not_found}
     end
   end
+
+  @doc """
+  Updates a truck's lat/long coordinates
+
+  ## Examples
+
+      iex> update_truck_lat_long_coords(truck_id, @valid_attrs)
+      {:ok, %Truck{}}
+
+      iex> update_truck_lat_long_coords(invalid_truck_id, @valid_attrs)
+      {:error, :not_found}
+
+      iex> update_truck_lat_long_coords(truck_id, @invalid_attrs)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_truck_lat_long_coords(truck_id, attrs) do
+    case fetch_truck(truck_id) do
+      {:ok, truck} ->
+        truck
+        |> Truck.update_lat_long_changeset(attrs)
+        |> Repo.update()
+      {:error, _} ->
+        {:error, :not_found}
+    end
+  end
+
+  @doc """
+  Deletes a truck
+
+  ## Examples
+
+      iex> delete(truck_id)
+      {:ok, %Truck{}}
+
+      iex> update_truck(invalid_truck_id)
+      {:error, :not_found}
+
+  """
 
   def delete_truck(truck_id) do
     case fetch_truck(truck_id) do

@@ -12,4 +12,11 @@ defmodule Truckdb.Repo do
       struct -> {:ok, struct}
     end
   end
+
+  def fetch_by(queryable, clauses, opts \\ []) do
+    case get_by(queryable, clauses, opts) do
+      nil -> {:error, :not_found}
+      struct -> {:ok, struct}
+    end
+  end
 end

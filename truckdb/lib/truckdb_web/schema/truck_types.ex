@@ -29,10 +29,29 @@ defmodule TruckdbWeb.Schema.TruckTypes do
   end
 
   object :truck_queries do
-    field :get_truck, :truck do
+    field :get_truck_by_id, non_null(:truck) do
       arg(:id, non_null(:id))
       resolve(fn _parent, %{id: id}, _context ->
         Trucks.fetch_truck(id)
+      end)
+    end
+
+    field :get_truck_by_location_id, non_null(:truck) do
+      arg(:location_id, non_null(:id))
+      resolve(fn _parent, %{location_id: id}, _context ->
+        Trucks.fetch_truck_by_location_id(id)
+      end)
+    end
+
+    field :get_trucks, non_null(list_of(non_null(:truck))) do
+      resolve(fn _parent, _, _context ->
+        Trucks.get_trucks()
+      end)
+    end
+
+    field :get_trucks_by_permit_status, non_null(list_of(non_null(:truck))) do
+      resolve(fn _parent, %{}, _context ->
+        Trucks.get_trucks()
       end)
     end
   end
