@@ -7,10 +7,15 @@ defmodule Truckdb.MixProject do
       version: "0.1.0",
       elixir: "~> 1.14",
       elixirc_paths: elixirc_paths(Mix.env()),
+      compilers: compilers(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps()
     ]
+  end
+
+  defp compilers(_) do
+    Mix.compilers() ++ [:graphql_schema_sdl]
   end
 
   # Configuration for the OTP application.

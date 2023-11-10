@@ -1,0 +1,35 @@
+schema {
+  query: RootQueryType
+}
+
+type RootQueryType {
+  getTruckById(id: ID!): Truck!
+  getTruckByLocationId(locationId: ID!): Truck!
+  getTrucks: [Truck!]!
+  getTrucksByPermitStatus: [Truck!]!
+}
+
+enum FacilityType {
+  PUSH_CART
+  TRUCK
+}
+
+enum PermitStatus {
+  APPROVED
+  EXPIRED
+  REQUESTED
+  SUSPENDED
+  ISSUED
+}
+
+"A truck"
+type Truck {
+  id: ID!
+  applicant: String!
+  facilityType: FacilityType!
+  cnn: String!
+  address: String!
+  permit: String!
+  status: PermitStatus!
+  schedule: String!
+}

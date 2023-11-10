@@ -31,6 +31,8 @@ config :truckdb, TruckdbWeb.Endpoint,
 # at the `config/runtime.exs`.
 config :truckdb, Truckdb.Mailer, adapter: Swoosh.Adapters.Local
 
+config :absinthe, schema: TruckdbWeb.Schema
+
 # Configure esbuild (the version is required)
 config :esbuild,
   version: "0.17.11",
