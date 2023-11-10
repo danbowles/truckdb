@@ -39,7 +39,7 @@ defmodule Truckdb.Repo.Migrations.CreateTrucksTable do
     create(
       unique_index(
         :trucks,
-        [:id, :location_id],
+        [:location_id],
         name: :unique_trucks_location_id
       )
     )
