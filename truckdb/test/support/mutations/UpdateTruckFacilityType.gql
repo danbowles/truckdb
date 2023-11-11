@@ -1,0 +1,9 @@
+#import "./Truck.frag.gql"
+mutation UpdateTruckFacilityType($id: ID!, $facilityType: FacilityType!) {
+  updateTruckFacilityType(
+    id: $id,
+    facilityType: $facilityType
+  ) {
+    ...TruckFields
+  }
+}

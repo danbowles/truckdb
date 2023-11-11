@@ -1,0 +1,11 @@
+fragment TruckFields on Truck {
+  id
+  locationId
+  applicant
+  facilityType
+  cnn
+  address
+  permit
+  status
+  schedule
+}

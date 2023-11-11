@@ -1,0 +1,24 @@
+#import "./Truck.frag.gql"
+mutation CreateTruck(
+    $locationId: String!,
+    $applicant: String!,
+    $facilityType: FacilityType!,
+    $cnn: String!,
+    $address: String!,
+    $permit: String!,
+    $status: PermitStatus!,
+    $schedule: String!,
+) {
+  createTruck(
+    locationId: $locationId,
+    applicant: $applicant,
+    facilityType: $facilityType,
+    cnn: $cnn,
+    address: $address,
+    permit: $permit,
+    status: $status,
+    schedule: $schedule,
+  ) {
+    ...TruckFields
+  }
+}

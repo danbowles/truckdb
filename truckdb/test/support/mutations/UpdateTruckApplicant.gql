@@ -1,0 +1,9 @@
+#import "./Truck.frag.gql"
+mutation UpdateTruckApplicant($id: ID!, $applicant: String!) {
+  updateTruckApplicant(
+    id: $id,
+    applicant: $applicant
+  ) {
+    ...TruckFields
+  }
+}

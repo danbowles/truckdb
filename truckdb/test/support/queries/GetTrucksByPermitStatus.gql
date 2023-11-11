@@ -1,0 +1,6 @@
+#import "./Truck.frag.gql"
+query GetTrucksByPermitStatus($status: PermitStatus!) {
+  getTrucksByPermitStatus(status: $status) {
+    ...TruckFields
+  }
+}

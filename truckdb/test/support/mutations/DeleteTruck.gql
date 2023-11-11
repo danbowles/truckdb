@@ -1,0 +1,8 @@
+#import "./Truck.frag.gql"
+mutation DeleteTruck($id: ID!) {
+  deleteTruck(
+    id: $id,
+  ) {
+    ...TruckFields
+  }
+}

@@ -1,0 +1,6 @@
+#import "./Truck.frag.gql"
+query GetTruckById($id: ID!) {
+  getTruckById(id: $id) {
+    ...TruckFields
+  }
+}

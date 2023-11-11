@@ -1,0 +1,10 @@
+#import "./Truck.frag.gql"
+mutation UpdateTruckLatitudeLongitude($id: ID!, $latitude: String!, $longitude: String!) {
+  updateTruckLatitudeLongitude(
+    id: $id,
+    latitude: $latitude,
+    longitude: $longitude
+  ) {
+    ...TruckFields
+  }
+}

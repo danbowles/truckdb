@@ -1,0 +1,6 @@
+#import "./Truck.frag.gql"
+query GetTrucks {
+  getTrucks {
+    ...TruckFields
+  }
+}
