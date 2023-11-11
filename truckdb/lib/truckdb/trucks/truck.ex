@@ -77,4 +77,8 @@ defmodule Truckdb.Trucks.Truck do
       message: "A truck with that location_id already exists"
     )
   end
+
+  def query_by_permit_status(status) do
+    from t in __MODULE__, where: t.status == ^status
+  end
 end

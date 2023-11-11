@@ -72,6 +72,21 @@ defmodule Truckdb.Trucks do
   end
 
   @doc """
+  Gets all trucks by permit status
+
+  ## Examples
+
+      iex> get_trucks_by_permit_status(:requested)
+      [%Truck{}, %Truck{}]
+
+  """
+
+  def get_trucks_by_permit_status(status) do
+    Truck.query_by_permit_status(status)
+    |> Repo.all()
+  end
+
+  @doc """
   Updates a truck
 
   ## Examples
