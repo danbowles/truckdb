@@ -6,4 +6,8 @@ defmodule TruckdbWeb.Schema do
   query do
     import_fields(:truck_queries)
   end
+
+  mutation do
+    import_fields(:truck_mutations)
+  end
 end
