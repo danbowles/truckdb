@@ -49,6 +49,7 @@ defmodule Truckdb.MixProject do
       {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
       {:tailwind, "~> 0.2.0", runtime: Mix.env() == :dev},
       {:swoosh, "~> 1.3"},
+      {:wormwood, "~>0.1", only: :test},
       {:finch, "~> 0.13"},
       {:ecto_enum_migration, "~> 0.3.1"},
       {:telemetry_metrics, "~> 0.6"},

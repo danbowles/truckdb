@@ -1,12 +1,23 @@
 schema {
+  mutation: RootMutationType
   query: RootQueryType
 }
 
 type RootQueryType {
   getTruckById(id: ID!): Truck!
-  getTruckByLocationId(locationId: ID!): Truck!
+  getTruckByLocationId(locationId: String!): Truck!
   getTrucks: [Truck!]!
-  getTrucksByPermitStatus: [Truck!]!
+  getTrucksByPermitStatus(status: PermitStatus!): [Truck!]!
+}
+
+type RootMutationType {
+  createTruck(
+    locationId: String!, applicant: String!, facilityType: FacilityType!, cnn: String!, address: String!, permit: String!, status: PermitStatus!, schedule: String!
+  ): Truck!
+  deleteTruck(id: ID!): Truck!
+  updateTruckApplicant(id: ID!, applicant: String!): Truck!
+  updateTruckFacilityType(id: ID!, facilityType: FacilityType!): Truck!
+  updateTruckLatitudeLongitude(id: ID!, latitude: String!, longitude: String!): Truck!
 }
 
 enum FacilityType {
@@ -25,6 +36,7 @@ enum PermitStatus {
 "A truck"
 type Truck {
   id: ID!
+  locationId: String!
   applicant: String!
   facilityType: FacilityType!
   cnn: String!
@@ -32,4 +44,6 @@ type Truck {
   permit: String!
   status: PermitStatus!
   schedule: String!
+  latitude: String
+  longitude: String
 }
