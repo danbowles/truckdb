@@ -44,7 +44,7 @@ Let's get you setup to start looking at some food truck data!
 
 ### Seed Database With Data
 #### *User and Password: `postgres`*
-`psql -h localhost -U postgres -f ../data.sql`
+`psql -h localhost -U postgres truckdb_dev -f ../data.sql`
 
 ### Start Managing Food Trucks!
 `iex -S mix phx.server`
